@@ -8,10 +8,10 @@ class VehicleRegistry:
         return ''.join(random.choices(string.ascii_uppercase, k=length))
 
     def generate_vehicle_license(self, id):
-        first_section = id[:2]
-        second_section = ''.join(random.choices(string.digits, k=2))
-        third_section = ''.join(random.choices(string.ascii_uppercase, k=2))
-        return f"{first_section}-{second_section}-{third_section}"
+        first_section = id[:3]
+        second_section = ''.join(random.choices(string.digits, k=4))
+        #third_section = ''.join(random.choices(string.ascii_uppercase, k=2))
+        return f"{first_section}-{second_section}"
 
 
 class VeiculoID:
@@ -31,7 +31,7 @@ class PlacaVeiculo:
         return placa_id
 
 
-""" class Porcentagem():
+class Porcentagem():
     # calcula a taxa de imposto. o padrão é 5%. para carros eletréticos o valor é 2%
     def taxa_porcentagem(self):
         tax_percentage = 0.05
@@ -41,14 +41,14 @@ class PlacaVeiculo:
         if CatalogoCarros().precos_carros():
             taxa_modelos_eletricos = 0.02
 
-        return electric_models """
+        return electric_models
 
 
 class CatalogoCarros():
     # determina o preco do veiculo
     def precos_carros(self, brand: string):
         catalogue_price = 0
-        if brand == 'Tesla Model 3':
+        if brand == 'Tesla Model 3': 
             catalogue_price = 445000
         elif brand == 'Chevrolet Bold':
             catalogue_price = 317000
@@ -58,11 +58,12 @@ class CatalogoCarros():
             catalogue_price = 127900
 
         # calcula a taxa de imposto. o padrão é 5%. para carros eletréticos o valor é 2%
-        tax_percentage = 0.05
-        electric_models = ['Tesla Model 3',
-                           'Chevrolet Bold', 'BMW i3', 'Honda Civic LX']
+        electric_models = ['Tesla Model 3','Chevrolet Bold', 'BMW i3']
+
         if brand in electric_models:
             tax_percentage = 0.02
+        else:
+            tax_percentage = 0.05
 
         # calcula a valor a ser pago
         payable_tax = tax_percentage * catalogue_price
@@ -78,57 +79,3 @@ class CatalogoCarros():
 
 app = CatalogoCarros()
 app.precos_carros('Honda Civic LX')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-""" class PrecoVeiculo():
-    # determina o preco do veiculo
-    def preco_veiculo(self, brand: string):
-        catalogue_price = 0
-        if brand == 'Tesla Model 3':
-            catalogue_price = 445000
-        elif brand == 'Chevrolet Bold':
-            catalogue_price = 317000
-        elif brand == 'BMW i3':
-            catalogue_price = 319950
-        elif 'Honda Civic LX':
-            catalogue_price = 127900
-            return catalogue_price
-
-        # calcula a taxa de imposto. o padrão é 5%. para carros eletréticos o valor é 2%
-        tax_percentage = 0.05
-        electric_models = ['Tesla Model 3',
-                           'Chevrolet Bold', 'BMW i3', 'Honda Civic LX']
-        if brand in electric_models:
-            tax_percentage = 0.02
-
-        # calcula a valor a ser pago
-        payable_tax = tax_percentage * catalogue_price
-
-        print(f'Marca: {brand}')
-        print(f'ID: {vehicle_id}')
-        print(f'Placa: {license_plate}')
-        print(f'Imposto a ser pago: {payable_tax}')
-
- """
